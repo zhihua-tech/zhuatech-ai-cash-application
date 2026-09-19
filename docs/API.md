@@ -16,12 +16,17 @@
 | GET | `/records/export.csv` | 导出 UTF-8 CSV |
 | GET | `/sla-summary` | SLA、逾期、风险和人员工作量 |
 | POST | `/domain/decision` | 执行AI智能收款核销系统专属领域规则 |
+| POST | `/domain/cash-allocation` | 多发票到账分配，返回核销行、置信度、剩余应收和未认领预警 |
 | GET/POST | `/enterprise/controls` | 企业控制项查询与幂等创建 |
 | POST | `/enterprise/controls/{id}/submit` | 提交复核 |
 | POST | `/admin/enterprise/controls/{id}/review` | 管理员审批或驳回 |
 | POST | `/enterprise/controls/{id}/documents` | 登记附件哈希及存储元数据 |
 | POST | `/enterprise/controls/{id}/complete` | 凭证完整后办结 |
 | POST | `/admin/enterprise/controls/{id}/sync` | 登记外部系统回执 |
+
+## 自动核销分配
+
+`/domain/cash-allocation` 接收银行流水号、客户编码、到账金额、容差和候选发票列表。候选发票包含发票号、客户、开放金额、到期日及附言是否命中；服务端校验重复发票并按“附言命中优先、到期日优先”分配。
 
 ## 领域决策字段
 
