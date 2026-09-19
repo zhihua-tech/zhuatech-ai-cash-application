@@ -10,8 +10,14 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class CashAllocationService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public AllocationResult allocate(@Valid AllocationRequest request) {
         Set<String> invoiceNumbers = new HashSet<>();
         for (InvoiceCandidate invoice : request.invoices()) {
@@ -45,14 +51,26 @@ public class CashAllocationService {
         return new AllocationResult(request.bankTransactionNo(), status, allocated, remaining, confidence, lines, warnings);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record AllocationRequest(@NotBlank String bankTransactionNo, @NotBlank String customerCode,
                                     @NotNull @DecimalMin("0.01") BigDecimal receivedAmount,
                                     @NotNull @DecimalMin("0.00") BigDecimal tolerance,
                                     @NotEmpty List<@Valid InvoiceCandidate> invoices) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record InvoiceCandidate(@NotBlank String invoiceNo, @NotBlank String customerCode,
                                    @NotNull @DecimalMin("0.01") BigDecimal openAmount,
                                    @NotNull LocalDate dueDate, boolean referenceMatched) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record AllocationLine(String invoiceNo, BigDecimal allocatedAmount, BigDecimal remainingOpenAmount, String reason) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record AllocationResult(String bankTransactionNo, String status, BigDecimal allocatedAmount,
                                    BigDecimal unappliedAmount, int confidence, List<AllocationLine> allocations,
                                    List<String> warnings) {}
