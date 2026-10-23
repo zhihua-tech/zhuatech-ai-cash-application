@@ -1,0 +1,49 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "PASS",
+      "settlement": "#100",
+      "remaining": "#0",
+      "overpayment": "#0"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "received": "90"
+    },
+    "expected": {
+      "decision": "REVIEW",
+      "remaining": "#7"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "received": "100"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "overpayment": "#3"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "bankFee": "98"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "received": "90",
+      "tolerance": "7"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false
+  }
+]
